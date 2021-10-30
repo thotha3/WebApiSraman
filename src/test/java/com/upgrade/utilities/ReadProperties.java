@@ -8,8 +8,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ReadProperties {
-    private static final Logger LOG = LoggerFactory.getLogger(ReadProperties.class);
-
     private static ReadProperties instance = null;
     private Properties properties = null;
 
@@ -19,7 +17,7 @@ public class ReadProperties {
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("config.properties");
             properties.load(inputStream);
         } catch (IOException e) {
-            LOG.error(e.getMessage());
+            e.printStackTrace();
         }
     }
 

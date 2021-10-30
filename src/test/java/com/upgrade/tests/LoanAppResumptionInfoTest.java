@@ -1,5 +1,6 @@
 package com.upgrade.tests;
 
+import com.upgrade.pojo.ErrorResponse;
 import com.upgrade.utilities.ReadProperties;
 import io.restassured.RestAssured;
 import io.restassured.mapper.ObjectMapperType;
@@ -19,9 +20,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class LoanAppResumptionInfoTest extends BaseTest {
-    private static final Logger LOG = LoggerFactory.getLogger(LoanAppResumptionInfoTest.class);
 
     // Expected Result
+    // For positive testcase
     private final Integer loanAppId = 101986069;
     private final String loanAppUuid = "611e03aa-81de-4bf3-ae33-3995e43d0cfb";
     private final String referrer = "LENDING_TREE";
@@ -40,6 +41,17 @@ public class LoanAppResumptionInfoTest extends BaseTest {
     private final Boolean checkingDiscountAvailable = false;
     private final String[] expresetOptions = {"LEAD_SECRET", "WIPE", "DEACTIVATE_USER"};
 
+    // For negative testcase
+    private final Integer code = 100001;
+    private final String codeName = "MISSING_LOAN_APPLICATION";
+    private final String message = "Loan application does not exist.";
+    private final Boolean retryable = false;
+    private final String type = "ABNORMAL";
+    private final String httpStatus = "NOT_FOUND";
+
+    /**
+     * Scenario that tests status code 200 and validates the response
+     */
     @Test
     public void positiveResponseTestCase() {
         RestAssured.baseURI = UPGRADE_REST_BASEURI;
@@ -57,9 +69,47 @@ public class LoanAppResumptionInfoTest extends BaseTest {
 
         Response response = request.post("/resume/byLeadSecret");
 
+        assertThat(response.getStatusCode(), equalTo(200));
+
         LoanAppResumptionInfo loanInfo = response.as(LoanAppResumptionInfo.class, ObjectMapperType.JACKSON_2);
         BorrowerResumptionInfo borrowerInfo = loanInfo.getLoanAppResumptionInfo().getBorrowerResumptionInfo();
 
+        validatePositiveResponse(loanInfo, borrowerInfo);
+    }
+
+    /**
+     * Scenario that tests status code 404 and validates the error response
+     */
+    @Test
+    public void negativeResponseTestCase() {
+        RestAssured.baseURI = UPGRADE_REST_BASEURI;
+        RequestSpecification request = RestAssured.given();
+
+        JSONObject requestBodyParams = new JSONObject();
+        requestBodyParams.put("loanAppUuid", "b8096ec7-2150-405f-84f5-ae99864b3e98");
+        requestBodyParams.put("skipSideEffects", true);
+
+        request.header("x-cf-source-id", "coding-challenge");
+        request.header("x-cf-corr-id", "ca992989-3241-4d17-9456-ed603cddceec");
+        request.header("Content-Type", "application/json");
+
+        request.body(requestBodyParams.toJSONString());
+
+        Response response = request.post("/resume/byLeadSecret");
+
+        assertThat(response.getStatusCode(), equalTo(404));
+
+        ErrorResponse errorResponse = response.as(ErrorResponse.class, ObjectMapperType.JACKSON_2);
+
+        validateNegativeResponse(errorResponse);
+    }
+
+    /**
+     * Validation of positive response
+     * @param loanInfo
+     * @param borrowerInfo
+     */
+    public void validatePositiveResponse(LoanAppResumptionInfo loanInfo, BorrowerResumptionInfo borrowerInfo) {
         assertThat(loanInfo.getLoanAppResumptionInfo().getLoanAppId(), equalTo(loanAppId));
         assertThat(loanInfo.getLoanAppResumptionInfo().getLoanAppUuid(), equalTo(loanAppUuid));
         assertThat(loanInfo.getLoanAppResumptionInfo().getReferrer(), equalTo(referrer));
@@ -80,5 +130,18 @@ public class LoanAppResumptionInfoTest extends BaseTest {
         List<String> resetOptions = loanInfo.getResetOptions();
         List<String> expResetOptions = Arrays.asList(expresetOptions);
         assertThat(resetOptions, equalTo(expResetOptions));
+    }
+
+    /**
+     * Validation of negative response
+     * @param errorResponse
+     */
+    public void validateNegativeResponse(ErrorResponse errorResponse) {
+        assertThat(errorResponse.getCode(), equalTo(code));
+        assertThat(errorResponse.getCodeName(), equalTo(codeName));
+        assertThat(errorResponse.getMessage(), equalTo(message));
+        assertThat(errorResponse.getRetryable(), equalTo(retryable));
+        assertThat(errorResponse.getType(), equalTo(type));
+        assertThat(errorResponse.getHttpStatus(), equalTo(httpStatus));
     }
 }

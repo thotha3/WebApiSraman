@@ -15,7 +15,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
-    private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
 
     public static String UPGRADE_REST_BASEURI = "";
     public static String UPGRADE_WEB_INTRO_URL = "";
@@ -39,11 +38,4 @@ public class BaseTest {
     public void tearDown() {
         driver.quit();
     }
-
-    public void waitForElementToBeVisible(WebElement webElement) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(webElement));
-    }
-
-
 }

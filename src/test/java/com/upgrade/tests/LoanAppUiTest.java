@@ -4,6 +4,8 @@ import com.upgrade.pageobjects.*;
 import com.upgrade.pojo.LoanDetails;
 import com.upgrade.utilities.RandomGen;
 import com.upgrade.utilities.ReadProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,6 +20,19 @@ public class LoanAppUiTest extends BaseTest {
     OfferPage offerPage;
     LoanDetails loanDetails;
 
+    private final String loanAmount = "2000";
+    private final String loanPurpose = "Pay off Credit Cards";
+    private final String borrowerStreet = "212 East 42nd Street";
+    private final String borrowerCity = "New York";
+    private final String borrowerState = "NY";
+    private final String borrowerZip = "10017";
+    private final String borrowerDob = "01/01/2000";
+    private final String borrowerIncome = "130000";
+    private final String borrowerAdditionalIncome = "10000";
+
+    /**
+     * Scenario that covers end-to-end
+     */
     @Test
     public void endToEndScenario() {
         initializePages();
@@ -47,25 +62,25 @@ public class LoanAppUiTest extends BaseTest {
 
     public void performWelcomePageActions() {
         driver.get(UPGRADE_WEB_INTRO_URL);
-        welcomePage.enterLoanAmount("2000");
-        welcomePage.enterLoanPurpose("Pay off Credit Cards");
+        welcomePage.enterLoanAmount(loanAmount);
+        welcomePage.enterLoanPurpose(loanPurpose);
         welcomePage.clickCheckYourRateButton();
     }
 
     public void performGetStartedPageActions() {
         getStartedPage.enterFirstname(RandomGen.randomString());
         getStartedPage.enterLastname(RandomGen.randomString());
-        getStartedPage.enterStreet("212 East 42nd Street");
-        getStartedPage.enterCity("New York");
-        getStartedPage.enterState("NY");
-        getStartedPage.enterZip("10017");
-        getStartedPage.enterDateOfBirth("01/01/2000");
+        getStartedPage.enterStreet(borrowerStreet);
+        getStartedPage.enterCity(borrowerCity);
+        getStartedPage.enterState(borrowerState);
+        getStartedPage.enterZip(borrowerZip);
+        getStartedPage.enterDateOfBirth(borrowerDob);
         getStartedPage.clickContinueButton();
     }
 
     public void performIncomeInfoPageActions() {
-        incomeInfoPage.enterBorrowerIncome("130000");
-        incomeInfoPage.enterBorrowerAdditionalIncome("10000");
+        incomeInfoPage.enterBorrowerIncome(borrowerIncome);
+        incomeInfoPage.enterBorrowerAdditionalIncome(borrowerAdditionalIncome);
         incomeInfoPage.clickContinueButton();
         incomeInfoPage.clickContinueButton();
     }
