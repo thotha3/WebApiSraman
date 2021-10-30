@@ -1,5 +1,5 @@
 
-package pojo.com.upgrade;
+package com.upgrade.pojo;
 
 import java.util.HashMap;
 import java.util.Map;
