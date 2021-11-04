@@ -10,13 +10,13 @@ public class IncomeInfoPage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[1]/div[1]/div/div/div/input")
+    @FindBy(xpath = "//*[@id='root']//form/div[1]/div[1]//input")
     WebElement borrowerIncomeTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[1]/div[2]/div/div/div/input")
+    @FindBy(xpath = "//*[@id='root']//form/div[1]/div[2]//input")
     WebElement borrowerAdditionalIncomeTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[2]/button")
+    @FindBy(xpath = "//button")
     WebElement continueBtn;
 
     public IncomeInfoPage(WebDriver driver) {

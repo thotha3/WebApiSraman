@@ -16,10 +16,10 @@ public class WelcomePage {
     @FindBy(name = "desiredAmount")
     WebElement loanAmountTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/div/div[2]/div[2]/div[2]/form/div/div/div[2]/div/select")
+    @FindBy(xpath = "//select")
     WebElement loanPurposeSelect;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/div/div[2]/div[2]/div[2]/form/div/div/div[3]/button")
+    @FindBy(xpath = "//button")
     WebElement checkRateBtn;
 
     public WelcomePage(WebDriver driver) {

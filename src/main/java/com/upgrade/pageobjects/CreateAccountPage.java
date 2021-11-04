@@ -12,16 +12,16 @@ public class CreateAccountPage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[1]/div[1]/div/div/div/input")
+    @FindBy(xpath = "//*[@id='root']//form/div[1]/div[1]//input")
     WebElement emailAddressTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[1]/div[2]/div/div/div/input")
+    @FindBy(xpath = "//*[@id='root']//form/div[1]/div[2]//input")
     WebElement passwordTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[2]/div/label/div[1]")
+    @FindBy(xpath = "//*[@id='root']//form/div[2]/div/label/div[1]")
     WebElement agreeCbox;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[3]/button")
+    @FindBy(xpath = "//button")
     WebElement checkRateBtn;
 
     public CreateAccountPage(WebDriver driver) {

@@ -11,13 +11,13 @@ public class LoginPage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/div/div/div/div/div/form/div/div[1]/div/div/div/input")
+    @FindBy(xpath = "//*[@id='root']//form/div[1]/div[1]//input")
     WebElement emailAddressTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/div/div/div/div/div/form/div/div[2]/div/div/div[1]/input")
+    @FindBy(xpath = "//*[@id='root']//form/div[1]/div[2]//input")
     WebElement passwordTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/div/div/div/div/div/form/button")
+    @FindBy(xpath = "//*[@id='root']/div/main//form/button")
     WebElement signInBtn;
 
     public LoginPage(WebDriver driver) {

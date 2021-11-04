@@ -30,7 +30,7 @@ public class GetStartedPage {
     @FindBy(name = "borrowerDateOfBirth")
     WebElement borrowerDateOfBirthTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[2]/button")
+    @FindBy(xpath = "//button")
     WebElement continueBtn;
 
     public GetStartedPage(WebDriver driver) {

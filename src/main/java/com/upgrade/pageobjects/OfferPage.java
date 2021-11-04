@@ -12,25 +12,25 @@ public class OfferPage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/header/div/label")
+    @FindBy(xpath = "//*[@id='root']/div/main/div/header/div/label")
     WebElement toggleNavBar;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/header/div/nav/ul/li[2]/a")
+    @FindBy(xpath = "//*[@id='root']/div/main/div/header/div/nav/ul/li[2]/a")
     WebElement logoutLink;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[1]/div[2]/span[2]")
+    @FindBy(xpath = "//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[1]/div[2]/span[2]")
     WebElement loanAmountTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[1]/div")
+    @FindBy(xpath = "//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[1]/div")
     WebElement monthlyPaymentTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[2]/div")
+    @FindBy(xpath = "//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[2]/div")
     WebElement termTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[3]/div")
+    @FindBy(xpath = "//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[3]/div")
     WebElement interestRateTxt;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[4]/div")
+    @FindBy(xpath = "//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[2]/div/div/ul/li[4]/div")
     WebElement aprTxt;
 
     public OfferPage(WebDriver driver) {
